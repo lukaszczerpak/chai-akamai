@@ -4,6 +4,7 @@
   "description": "Akamai specific assertions for the Chai Assertion Library.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,5 +25,13 @@
   "homepage": "https://github.com/lukaszczerpak/chai-akamai#readme",
   "dependencies": {
     "cookiejar": "^2.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
   }
 }
