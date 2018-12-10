@@ -65,7 +65,7 @@ module.exports = function (chai, utils) {
 
   Assertion.addMethod('akamaiVariable', function (name, value) {
     const headers = getHeader(this._obj, 'x-akamai-session-info').split(',');
-    let patt = new RegExp(`name=${name};`);
+    let patt = new RegExp(`name=${name}(;|$)`);
     const header = headers.find(o => patt.test(o));
 
     this.assert(
@@ -76,7 +76,7 @@ module.exports = function (chai, utils) {
 
     if (arguments.length === 2) {
       patt = new RegExp('\\s*name=[^;$]+; value=([^;$]*)');
-      const actualValue = patt.exec(header)[1];
+      const actualValue = patt.test(header) ? patt.exec(header)[1] : null;
 
       if (arguments[1] instanceof RegExp) {
         this.assert(
