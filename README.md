@@ -1,3 +1,6 @@
+![](https://img.shields.io/badge/License-MIT-00CCFF.svg?style=flat-square)
+![](https://img.shields.io/badge/chai--akamai-JS-FF0066.svg?style=flat-square)
+
 # Chai Akamai
 
 > Chai assertions for testing Akamai configurations.
@@ -107,4 +110,4 @@ expect(res).to.have.akamaiCookieToken('paywall').to.have.property('exp').to.be.c
 
 ## License
 
-The MIT License
+chai-akamai is licensed under the [MIT license](LICENSE).
