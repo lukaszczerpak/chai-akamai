@@ -74,10 +74,11 @@ module.exports = function (chai, utils) {
       `expected variable '${name}' to not exist`
     );
 
-    if (arguments.length === 2) {
-      patt = new RegExp('\\s*name=[^;$]+; value=([^;$]*)');
-      const actualValue = patt.test(header) ? patt.exec(header)[1] : null;
+    patt = new RegExp('\\s*name=[^;$]+; value=([^;$]*)');
+    const actualValue = patt.test(header) ? patt.exec(header)[1] : null;
+    utils.flag(this, 'object', actualValue);
 
+    if (arguments.length === 2) {
       if (arguments[1] instanceof RegExp) {
         this.assert(
           value.test(actualValue),
@@ -130,9 +131,9 @@ module.exports = function (chai, utils) {
 
     const attrs = cookie.value.split('~')
       .map(o => o.split('='))
-      .filter(([key, value]) => typeof key !== 'undefined' && typeof value !== 'undefined')
-      .reduce((o, [key, value]) => {
-        o[key] = decodeURIComponent(value);
+      .filter(([key, ...value]) => typeof key !== 'undefined' && typeof value !== 'undefined')
+      .reduce((o, [key, ...value]) => {
+        o[key] = decodeURIComponent(value.join('='));
         return o;
       }, {});
 
