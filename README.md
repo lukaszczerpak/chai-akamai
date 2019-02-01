@@ -25,6 +25,29 @@ const chai = require('chai');
 chai.use(require('chai-akamai'));
 ```
 
+With [supertest-akamai](https://github.com/lukaszczerpak/supertest-akamai) gives powerful framework to build unit test suites:
+
+```js
+const chai = require('chai');
+const expect = chai.expect;
+const akamaiReq = require('supertest-akamai');
+
+chai.use(require('chai-http'));
+chai.use(require('chai-akamai'));
+
+const request = akamaiReq('http://www.example.com', 'example.com.edgesuite-staging.net').get('/about-us');
+
+describe('sanity check', function () {
+  it('respond with OK', function () {
+    return paywallReq
+      .expect((res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res).to.be.akamaiStaging;
+      });
+  });
+});
+```
+
 ## Assertions
 
 The Chai Akamai module provides a number of assertions
