@@ -140,4 +140,10 @@ module.exports = function (chai, utils) {
     const akamaiToken = new AkamaiToken(key, parseInt(attrs.exp, 10), attrs.data, attrs.hash);
     utils.flag(this, 'object', akamaiToken);
   });
+
+  Assertion.addMethod('akamaiRedirectTo', function (statusCode, destination) {
+    new Assertion(this._obj).to.have.status(statusCode);
+    new Assertion(this._obj).to.have.header('Server', /(AkamaiGHost|GHost)/);
+    new Assertion(this._obj).to.redirectTo(destination);
+  });
 };

@@ -107,6 +107,15 @@ expect(res).to.have.akamaiCookieToken('paywall').to.have.property('data').to.be.
 expect(res).to.have.akamaiCookieToken('paywall').to.have.property('exp').to.be.closeTo(new Date(), 60);
 ```
 
+### .akamaiRedirectTo
+
+Assert that a `Response` object comes from Akamai Server and it is a redirection to the given URL:
+
+```js
+expect(res).to.be.akamaiRedirectTo(301, 'http://www.example.com/')
+```
+
+This can be useful for testing Edge Redirector policies or redirects defined in site delivery configuration.
 
 ## License
 
